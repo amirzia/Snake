@@ -10,6 +10,13 @@ import random
 from game import Game
 from user import User
 
+
+UP = 0
+RIGHT = 1
+DOWN = 2
+LEFT = 3
+
+
 BOARD_SIZE = 64
 GAME_PERIOD = 1 # seconds
 
@@ -61,13 +68,23 @@ class BoardServer(Resource):
 			game.get_board()
 		}
 
-	def post(self):
+	def post(self, dir):
 		print("POST")
+		
+		user1 = game.users[0]
+		if dir == 'up':
+			user1.last_move = UP
+		elif dir == 'down':
+			user1.last_move = DOWN
+		elif dir == 'right':
+			user1.last_move = RIGHT
+		elif dir == 'left':
+			user1.last_move = LEFT
 		game.update_board()
 		return
 
 
-api.add_resource(BoardServer, '/get_board')
+api.add_resource(BoardServer, '/get_board', '/move/<dir>')
 
 if __name__ == '__main__':
 	start_game()
