@@ -65,7 +65,9 @@ class BoardServer(Resource):
 
 
 		return {"borad":
-			game.get_board()
+			game.get_board(),
+            "scores":
+            game.get_scores()
 		}
 
 	def post(self, dir):

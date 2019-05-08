@@ -39,6 +39,12 @@ class Game:
         return board
         
     
+    def get_scores(self):
+        scores = []
+        for user in self.users:
+            scores.append(len(user.pos))
+        return scores
+
     def print_board(self):
         board = get_board()
                 
