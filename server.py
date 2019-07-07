@@ -17,7 +17,7 @@ DOWN = 2
 LEFT = 3
 
 
-BOARD_SIZE = 64
+BOARD_SIZE = 48
 GAME_PERIOD = 1 # seconds
 
 game = Game(BOARD_SIZE)
@@ -27,7 +27,7 @@ def monitor():
         time.sleep(GAME_PERIOD)
         game.update_board()
 
-        if random.randint(0, 3) == 0:
+        if random.randint(0, 8) == 0:
             game.add_food([random.randint(0, 9), random.randint(0, 9)])
 
 
