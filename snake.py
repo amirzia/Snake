@@ -78,7 +78,7 @@ game_board = []
 # Main logic
 while True:
 
-    res = requests.get("http://localhost:5000/get_board")
+    res = requests.get("http://5.253.27.186:5000/get_board")
     #print("res get")
     res = json.loads(res.text)
     game_board = res["board"]

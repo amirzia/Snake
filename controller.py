@@ -24,17 +24,17 @@ def joystick_loop():
         else:
             if x > 10 ** 5:
                 #print("down")
-                requests.post("http://localhost:5000/move/1/right")
+                requests.post("http://5.253.27.186:5000/move/1/right")
             elif x > 10 ** 3:
                 #print("up")
-                requests.post("http://localhost:5000/move/1/left")
+                requests.post("http://5.253.27.186:5000/move/1/left")
 
             if y > 10 ** 5:
                 #print("left")# --> up
-                requests.post("http://localhost:5000/move/1/up")
+                requests.post("http://5.253.27.186:5000/move/1/up")
             elif y > 10 ** 3:
                 #print("right") #--> down
-                requests.post("http://localhost:5000/move/1/down")
+                requests.post("http://5.253.27.186:5000/move/1/down")
              
             x, y = 0, 0
 
