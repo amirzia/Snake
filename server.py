@@ -20,7 +20,7 @@ LEFT = 3
 
 
 BOARD_SIZE = 32
-GAME_PERIOD = 1 # seconds
+GAME_PERIOD = 4 # seconds
 
 game = Game(BOARD_SIZE)
 # stop_threads = False
@@ -40,6 +40,8 @@ def reset():
 	del user1
 	del user2
 	del game
+
+	time.sleep(GAME_PERIOD)
 	user1 = User(BOARD_SIZE)
 	user2 = User(BOARD_SIZE)
 
