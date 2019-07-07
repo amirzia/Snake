@@ -55,7 +55,7 @@ def game_over():
     game_window.blit(game_over_surface, game_over_rect)
     show_score(0, red, 'times', 20)
     pygame.display.flip()
-    time.sleep(3)
+    time.sleep(30)
     pygame.quit()
     sys.exit()
 
@@ -63,7 +63,7 @@ def game_over():
 # Score
 def show_score(choice, color, font, size):
     score_font = pygame.font.SysFont(font, size)
-    score_surface = score_font.render('Score : ' + str(scores[0]) + ' ' + str(scores[1]), True, color)
+    score_surface = score_font.render('Score: Player 1:' + str(scores[0]) + ', Player 2:' + str(scores[1]), True, color)
     score_rect = score_surface.get_rect()
     if choice == 1:
         score_rect.midtop = (frame_size_x/10, 15)
