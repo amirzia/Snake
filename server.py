@@ -51,18 +51,10 @@ def get_board(game):
 app = Flask(__name__)
 api = Api(app)
 
+
 class BoardServer(Resource):
 	def get(self):
 		print("GET")
-		#for row in game.get_board():
-		#	print(row)
-
-
-		#print()
-		#for user in game.users:
-		#	print(user.name, user.last_move)
-
-
 		return {"board": game.get_board(), "scores": game.get_scores(), "lost": game.lost}
 
 	def post(self, user, dir):

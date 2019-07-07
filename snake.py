@@ -42,7 +42,7 @@ white = pygame.Color(255, 255, 255)
 red = pygame.Color(255, 0, 0)
 green = pygame.Color(0, 255, 0)
 blue = pygame.Color(0, 0, 255)
-
+yellow = pygame.Color(255, 255, 0)
 
 # FPS (frames per second) controller
 fps_controller = pygame.time.Clock()
@@ -78,6 +78,10 @@ while True:
             elif game_board[i][j] == 2:
                 # print("here is the snake: ", i, j)
                 pygame.draw.rect(game_window, red, (i * 10, j * 10, 10, 10))
+            elif game_board[i][j] == 8:
+                pygame.draw.rect(game_window, yello, (i * 10, j * 10, 10, 10))
+            elif game_board[i][j] == 8:
+                pygame.draw.rect(game_window, yello, (i * 10, j * 10, 10, 10))
     pygame.display.update()
     fps_controller.tick(difficulty)
     time.sleep(1)

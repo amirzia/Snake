@@ -16,7 +16,7 @@ class User:
         self.name = User.num
         User.num += 1
         self.board_size = board_size
-        self.pos = [12, 12]
+        self.pos = [[12, 12]]
         self.last_move = random.randint(0, 3)
         self.eaten = False
     
