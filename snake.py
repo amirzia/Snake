@@ -52,34 +52,20 @@ score = 0
 game_board = []
 
 
-def text_objects(text, font):
-    textSurface = font.render(text, True, black)
-    return textSurface, textSurface.get_rect()
-
-
-# def message_display(text):
-#     largeText = pygame.font.Font('helvetica.ttf', 115)
-#     TextSurf, TextRect = text_objects(text, largeText)
-#     TextRect.center = ((display_width / 2), (display_height / 2))
-#     game_board.blit(TextSurf, TextRect)
-#
-#     pygame.display.update()
-#
-#     time.sleep(2)
-#
-#     game_loop()
-
-
 # Main logic
 while True:
 
     res = requests.get("http://localhost:5000/get_board")
+    #print("res get")
     res = json.loads(res.text)
     game_board = res["board"]
     user_lost = res["lost"]
     if user_lost == True:
         print("end game")
+    # print(len(game_board))
+    # print(game_board)
     game_window.fill(black)
+    # print("blacked out")
     for i in range(0, 32):
         for j in range(0, 32):
             # print(game_board[i][j])
@@ -92,14 +78,12 @@ while True:
             elif game_board[i][j] == 2:
                 # print("here is the snake: ", i, j)
                 pygame.draw.rect(game_window, red, (i * 10, j * 10, 10, 10))
-            elif game_board[i][j] == 3:
-                pygame.draw.rect(game_window, blue, (i * 10, j * 10, 10, 10))
             elif game_board[i][j] == 8:
-                pygame.draw.rect(game_window, yellow, (i * 10, j * 10, 10, 10))
-    largeText = pygame.font.Font('helvetica.ttf', 115)
-    TextSurf, TextRect = text_objects(text, largeText)
-    TextRect.center = ((display_width / 2), (display_height / 2))
-    game_board.blit(TextSurf, TextRect)
+                pygame.draw.rect(game_window, yello, (i * 10, j * 10, 10, 10))
+            elif game_board[i][j] == 8:
+                pygame.draw.rect(game_window, yello, (i * 10, j * 10, 10, 10))
     pygame.display.update()
     fps_controller.tick(difficulty)
     time.sleep(1)
+
+
