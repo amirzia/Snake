@@ -51,15 +51,23 @@ fps_controller = pygame.time.Clock()
 score = 0
 game_board = []
 
-def show_score(choice, color, font, size):
-    score_font = pygame.font.SysFont(font, size)
-    score_surface = score_font.render('Score : ' + str(score), True, color)
-    score_rect = score_surface.get_rect()
-    if choice == 1:
-        score_rect.midtop = (frame_size_x/10, 15)
-    else:
-        score_rect.midtop = (frame_size_x/2, frame_size_y/1.25)
-    game_window.blit(score_surface, score_rect)
+
+def text_objects(text, font):
+    textSurface = font.render(text, True, black)
+    return textSurface, textSurface.get_rect()
+
+
+# def message_display(text):
+#     largeText = pygame.font.Font('helvetica.ttf', 115)
+#     TextSurf, TextRect = text_objects(text, largeText)
+#     TextRect.center = ((display_width / 2), (display_height / 2))
+#     game_board.blit(TextSurf, TextRect)
+#
+#     pygame.display.update()
+#
+#     time.sleep(2)
+#
+#     game_loop()
 
 
 # Main logic
@@ -88,7 +96,10 @@ while True:
                 pygame.draw.rect(game_window, blue, (i * 10, j * 10, 10, 10))
             elif game_board[i][j] == 8:
                 pygame.draw.rect(game_window, yellow, (i * 10, j * 10, 10, 10))
-    show_score()
+    largeText = pygame.font.Font('helvetica.ttf', 115)
+    TextSurf, TextRect = text_objects(text, largeText)
+    TextRect.center = ((display_width / 2), (display_height / 2))
+    game_board.blit(TextSurf, TextRect)
     pygame.display.update()
     fps_controller.tick(difficulty)
     time.sleep(1)
