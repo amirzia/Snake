@@ -17,7 +17,7 @@ DOWN = 2
 LEFT = 3
 
 
-BOARD_SIZE = 48
+BOARD_SIZE = 32
 GAME_PERIOD = 1 # seconds
 
 game = Game(BOARD_SIZE)
@@ -26,18 +26,17 @@ def monitor():
     for i in range(1000):
         time.sleep(GAME_PERIOD)
         game.update_board()
-
-        if random.randint(0, 8) == 0:
-            game.add_food([random.randint(0, 9), random.randint(0, 9)])
+        if random.randint(0, 6) == 0:
+            game.add_food([random.randint(0, 31), random.randint(0, 31)])
 
 
 def start_game():
     user1 = User(BOARD_SIZE)
-    # user2 = User(10)
+    user2 = User(BOARD_SIZE)
     # user3 = User(10)
 
     game.add_user(user1)
-    # game.add_user(user2)
+    game.add_user(user2)
     # game.add_user(user3)
 
     t = Thread(target=monitor)
@@ -64,29 +63,25 @@ class BoardServer(Resource):
 		#	print(user.name, user.last_move)
 
 
-		return {"borad":
-			game.get_board(),
-            "scores":
-            game.get_scores()
-		}
+		return {"board": game.get_board(), "scores": game.get_scores(), "lost": game.lost}
 
-	def post(self, dir):
+	def post(self, user, dir):
 		print("POST")
-		
-		user1 = game.users[0]
+
+		user = game.users[int(user) - 1]
 		if dir == 'up':
-			user1.last_move = UP
+			user.last_move = UP
 		elif dir == 'down':
-			user1.last_move = DOWN
+			user.last_move = DOWN
 		elif dir == 'right':
-			user1.last_move = RIGHT
+			user.last_move = RIGHT
 		elif dir == 'left':
-			user1.last_move = LEFT
+			user.last_move = LEFT
 		game.update_board()
 		return
 
 
-api.add_resource(BoardServer, '/get_board', '/move/<dir>')
+api.add_resource(BoardServer, '/get_board', '/move/<user>/<dir>')
 
 if __name__ == '__main__':
 	start_game()

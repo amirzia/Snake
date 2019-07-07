@@ -8,7 +8,7 @@ import controller
 
 controller.start_controller()
 
-size = 480
+size = 320
 # Difficulty settings
 # Easy      ->  10
 # Medium    ->  25
@@ -18,8 +18,8 @@ size = 480
 difficulty = 25
 
 # Window size
-frame_size_x = 480
-frame_size_y = 480
+frame_size_x = 320
+frame_size_y = 320
 
 # Checks for errors encountered
 check_errors = pygame.init()
@@ -58,20 +58,26 @@ while True:
     res = requests.get("http://localhost:5000/get_board")
     #print("res get")
     res = json.loads(res.text)
-    game_board = res["borad"]
+    game_board = res["board"]
+    user_lost = res["lost"]
+    if user_lost == True:
+        print("end game")
     # print(len(game_board))
     # print(game_board)
     game_window.fill(black)
     # print("blacked out")
-    for i in range(0, 48):
-        for j in range(0, 48):
+    for i in range(0, 32):
+        for j in range(0, 32):
             # print(game_board[i][j])
             if game_board[i][j] == 9:
                 # print("here is the food: ", i, j)
                 pygame.draw.rect(game_window, white, (i * 10, j * 10, 10, 10))
             elif game_board[i][j] == 1:
-                print("here is the snake: ", i, j)
+                # print("here is the snake: ", i, j)
                 pygame.draw.rect(game_window, green, (i * 10, j * 10, 10, 10))
+            elif game_board[i][j] == 2:
+                # print("here is the snake: ", i, j)
+                pygame.draw.rect(game_window, red, (i * 10, j * 10, 10, 10))
     pygame.display.update()
     fps_controller.tick(difficulty)
     time.sleep(1)

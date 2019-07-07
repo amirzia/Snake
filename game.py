@@ -5,24 +5,27 @@ FOOD = 9
 
 class Game:
     
-    def __init__(self, size=10):
+    def __init__(self, size=32):
         self.size = size
         self.board = [[0 for _ in range(size)] for _ in range(size)]
         self.users = []
         self.foods = []
+        self.lost = False
         
     def add_user(self, user):
         self.users.append(user)
     
     def update_board(self):
         for user in self.users:
-            user.move()
+            self.lost = user.move()
             
             head = user.get_head()
             for food in self.foods:
                 if (food[0] == head[0]) and (food[1] == head[1]):
                     user.eaten = True
                     self.foods.remove(food)
+        print("in update board: ", self.lost)
+        return self.lost
         
 
     def get_board(self):
