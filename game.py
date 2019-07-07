@@ -18,7 +18,7 @@ class Game:
     def update_board(self):
         for user in self.users:
             self.lost = user.move()
-            
+
             head = user.get_head()
             for food in self.foods:
                 if (food[0] == head[0]) and (food[1] == head[1]):

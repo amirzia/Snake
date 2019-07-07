@@ -10,6 +10,8 @@ import random
 from game import Game
 from user import User
 
+user1 = None
+user2 = None
 
 UP = 0
 RIGHT = 1
@@ -21,13 +23,29 @@ BOARD_SIZE = 32
 GAME_PERIOD = 1 # seconds
 
 game = Game(BOARD_SIZE)
+# stop_threads = False
 
 def monitor():
     for i in range(1000):
         time.sleep(GAME_PERIOD)
-        game.update_board()
+        if game.update_board() == True:
+            reset()
+            continue
         if random.randint(0, 6) == 0:
             game.add_food([random.randint(0, 31), random.randint(0, 31)])
+
+def reset():
+	print("reseting")
+	global user1, user2, game
+	del user1
+	del user2
+	del game
+	user1 = User(BOARD_SIZE)
+	user2 = User(BOARD_SIZE)
+
+	game = Game(BOARD_SIZE)
+	game.add_user(user1)
+	game.add_user(user2)
 
 
 def start_game():
