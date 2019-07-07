@@ -55,7 +55,7 @@ def game_over():
     game_window.blit(game_over_surface, game_over_rect)
     show_score(0, red, 'times', 20)
     pygame.display.flip()
-    time.sleep(30)
+    time.sleep(4)
     pygame.quit()
     sys.exit()
 
@@ -109,6 +109,6 @@ while True:
                 pygame.draw.rect(game_window, yello, (i * 10, j * 10, 10, 10))
     pygame.display.update()
     fps_controller.tick(difficulty)
-    time.sleep(1)
+    time.sleep(0.4)
 
 

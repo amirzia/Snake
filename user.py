@@ -16,9 +16,12 @@ class User:
         self.name = User.num
         User.num += 1
         self.board_size = board_size
-        self.pos = [[12, 12]]
+        self.pos = [[random.randint(10, board_size - 10), random.randint(10, board_size - 10)]]
         self.last_move = random.randint(0, 3)
         self.eaten = False
+
+    def __del__(self):
+        User.num -= 1
     
     def move(self):
         head = copy.copy(self.pos[len(self.pos) - 1])
