@@ -16,7 +16,7 @@ class User:
         self.name = User.num
         User.num += 1
         self.board_size = board_size
-        self.pos = [[random.randint(1, board_size - 2), random.randint(1, board_size - 2)]]
+        self.pos = [12, 12]
         self.last_move = random.randint(0, 3)
         self.eaten = False
     
@@ -28,10 +28,6 @@ class User:
                 return True
             else:
                 head[0] += 1
-            # if head[0] == self.board_size - 1:
-            #     self.last_move = LEFT
-            #     return self.move()
-            # head[0] += 1
             self.pos.append(head)
         elif self.last_move == RIGHT:
             if head[1] == self.board_size - 1:
@@ -39,10 +35,6 @@ class User:
                 return True
             else:
                 head[1] += 1
-            # if head[1] == self.board_size - 1:
-            #     self.last_move = DOWN
-            #     return self.move()
-            # head[1] += 1
             self.pos.append(head)
         elif self.last_move == UP:
             if head[0] == 0:
@@ -50,10 +42,6 @@ class User:
                 return True
             else:
                 head[0] -= 1
-            # if head[0] == 0:
-            #     self.last_move = RIGHT
-            #     return self.move()
-            # head[0] -= 1
             self.pos.append(head)
         elif self.last_move == LEFT:
             if head[1] == 0:
@@ -61,10 +49,6 @@ class User:
                 return True
             else:
                 head[1] -= 1
-            # if head[1] == 0:
-            #     self.last_move = UP
-            #     return self.move()
-            # head[1] -= 1
             self.pos.append(head)
         else:
             print("Error")
