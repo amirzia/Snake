@@ -22,7 +22,7 @@ class Game:
             self.lost = user.move()
 
             head = user.get_head()
-            if self.board[head[0]][head[1]] in [1, 2, 3]:
+            if self.get_board()[head[0]][head[1]] in [3 - user.name, 8]:
                 print(user.name, "game over")
                 return True
             for food in self.foods:

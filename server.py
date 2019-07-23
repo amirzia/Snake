@@ -20,13 +20,13 @@ LEFT = 3
 
 
 BOARD_SIZE = 32
-GAME_PERIOD = 0.5 # seconds
+GAME_PERIOD = 1 # seconds
 
 game = Game(BOARD_SIZE)
 # stop_threads = False
 
 def monitor():
-    for i in range(1000):
+    for i in range(1000 * 1000):
         time.sleep(GAME_PERIOD)
         if game.update_board() == True:
             reset()
@@ -42,7 +42,7 @@ def reset():
 	global user1, user2, game
 	del user1
 	del user2
-	# del game
+	del game
 	User.num = 1
 	time.sleep(4)
 
@@ -62,7 +62,7 @@ def start_game():
 
     game.add_user(user1)
     game.add_user(user2)
-    # game.add_user(user3)
+    game.add_user(user3)
 
     t = Thread(target=monitor)
     t.start()
@@ -102,4 +102,4 @@ api.add_resource(BoardServer, '/get_board', '/move/<user>/<dir>')
 
 if __name__ == '__main__':
 	start_game()
-	app.run(debug=True)
+	app.run('0.0.0.0', debug=False)
