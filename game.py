@@ -2,6 +2,7 @@ import copy
 
 
 FOOD = 9
+OBSTACLE = 8
 
 class Game:
     
@@ -10,6 +11,7 @@ class Game:
         self.board = [[0 for _ in range(size)] for _ in range(size)]
         self.users = []
         self.foods = []
+        self.obstacles = []
         self.lost = False
         
     def add_user(self, user):
@@ -41,6 +43,8 @@ class Game:
             
             for food in self.foods:
                 board[food[0]][food[1]] = FOOD
+            for obstacle in self.obstacles:
+                board[obstacle[0]][obstacle[1]] = OBSTACLE
         # return list(reversed(board))
         return board
         
@@ -59,4 +63,6 @@ class Game:
             
     def add_food(self, pos):
         self.foods.append(pos)
-        
+
+    def add_obstacle(self, pos):
+        self.obstacles.append(pos)

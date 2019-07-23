@@ -33,6 +33,9 @@ def monitor():
             continue
         if random.randint(0, 6) == 0:
             game.add_food([random.randint(0, 31), random.randint(0, 31)])
+        if random.randint(0, 8) == 0:
+            game.add_obstacle([random.randint(0, 31), random.randint(0, 31)])
+
 
 def reset():
 	print("reseting")
