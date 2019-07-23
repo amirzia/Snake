@@ -40,14 +40,21 @@ yellow = pygame.Color(255, 255, 0)
 
 # FPS (frames per second) controller
 fps_controller = pygame.time.Clock()
-def game_over():
+def game_over(me):
+    if me:
+        message = "Game Over!"
+        color = red
+    else:
+        message = "Win!"
+        color = green
+
     my_font = pygame.font.SysFont('times new roman', 40)
     game_over_surface = my_font.render('Game Over!', True, red)
     game_over_rect = game_over_surface.get_rect()
     game_over_rect.midtop = (frame_size_x/2, frame_size_y/4)
     game_window.fill(black)
     game_window.blit(game_over_surface, game_over_rect)
-    show_score(0, red, 'times', 20)
+    show_score(0, color, 'times', 20)
     pygame.display.flip()
     time.sleep(4)
     pygame.quit()
@@ -78,9 +85,12 @@ while True:
     game_board = res["board"]
     user_lost = res["lost"]
     scores = res["scores"]
-    if user_lost == True:
+    if user_lost == "1":
         print("end game")
-        game_over()
+        game_over(True)
+    elif user_lost == "2":
+        print("win game")
+        game_over(False)
     # print(len(game_board))
     # print(game_board)
     game_window.fill(black)

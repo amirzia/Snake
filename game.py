@@ -19,17 +19,20 @@ class Game:
     
     def update_board(self):
         for user in self.users:
-            self.lost = user.move()
+            lost = user.move()
+            if lost:
+                self.lost = user.name
 
             head = user.get_head()
             if self.get_board()[head[0]][head[1]] in [3 - user.name, 8]:
                 print(user.name, "game over")
-                return True
+                self.lost = user.name
+                return user.name
             for food in self.foods:
                 if (food[0] == head[0]) and (food[1] == head[1]):
                     user.eaten = True
                     self.foods.remove(food)
-        print("in update board: ", self.lost)
+        print("in update board: ", lost)
         return self.lost
         
 

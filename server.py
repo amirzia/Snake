@@ -28,7 +28,7 @@ game = Game(BOARD_SIZE)
 def monitor():
     for i in range(1000 * 1000):
         time.sleep(GAME_PERIOD)
-        if game.update_board() == True:
+        if game.update_board() != 0:
             reset()
             continue
         if random.randint(0, 6) == 0:
@@ -42,27 +42,26 @@ def reset():
 	global user1, user2, game
 	del user1
 	del user2
-	del game
 	User.num = 1
 	time.sleep(4)
 
 	time.sleep(GAME_PERIOD)
 	user1 = User(BOARD_SIZE)
-	user2 = User(BOARD_SIZE)
+	#user2 = User(BOARD_SIZE)
 
 	game = Game(BOARD_SIZE)
 	game.add_user(user1)
-	game.add_user(user2)
+	#game.add_user(user2)
 
 
 def start_game():
     user1 = User(BOARD_SIZE)
-    user2 = User(BOARD_SIZE)
+    #user2 = User(BOARD_SIZE)
     # user3 = User(10)
 
     game.add_user(user1)
-    game.add_user(user2)
-    game.add_user(user3)
+    #game.add_user(user2)
+    # game.add_user(user3)
 
     t = Thread(target=monitor)
     t.start()
