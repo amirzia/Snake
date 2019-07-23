@@ -9,6 +9,7 @@ import random
 
 from game import Game
 from user import User
+from start import Start
 
 user1 = None
 user2 = None
@@ -60,9 +61,10 @@ def start_game():
     # user3 = User(10)
 
     game.add_user(user1)
-    #game.add_user(user2)
+    game.add_user(user2)
     # game.add_user(user3)
-
+    while Start.user1 == True and Start.user2 == True:
+         sleep(5)
     t = Thread(target=monitor)
     t.start()
 
